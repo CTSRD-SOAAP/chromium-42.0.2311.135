@@ -992,6 +992,7 @@
               ['exclude', '^files/file_path_watcher_linux\\.cc$'],
               ['exclude', '^files/file_util_linux\\.cc$'],
               ['exclude', '^process/memory_linux\\.cc$'],
+              ['exclude', '^process/process_handle_linux\\.cc$'],
               ['exclude', '^process/process_linux\\.cc$'],
               ['exclude', '^sys_info_linux\\.cc$'],
               ['exclude', '^process/process_iterator_linux\\.cc$'],
