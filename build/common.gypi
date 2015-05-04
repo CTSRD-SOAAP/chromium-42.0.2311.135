@@ -2552,6 +2552,9 @@
           '<(DEPTH)/build/win/asan.gyp:asan_dynamic_runtime',
         ],
       }],
+      ['OS=="freebsd"', {
+        'defines': ['CAPSICUM_SUPPORT'],
+      }],
       ['OS=="linux" and use_allocator!="none" and clang_type_profiler==1', {
         'cflags_cc!': ['-fno-rtti'],
         'cflags_cc+': [

@@ -14,6 +14,7 @@
 #include "base/logging.h"
 #include "base/memory/scoped_vector.h"
 #include "base/pickle.h"
+#include "base/posix/capsicum.h"
 #include "base/posix/eintr_wrapper.h"
 #include "base/stl_util.h"
 
@@ -40,6 +41,16 @@ static bool CreateSocketPair(base::ScopedFD* one, base::ScopedFD* two) {
   int raw_socks[2];
   if (socketpair(AF_UNIX, SOCK_SEQPACKET, 0, raw_socks) == -1)
     return false;
+
+#if defined(CAPSICUM_SUPPORT)
+  static Capsicum::Rights rights;
+  if (not rights.read)
+    rights.read = rights.write = rights.poll = true;
+
+  if (not Capsicum::RestrictPair(raw_socks, rights))
+    return false;
+#endif
+
   one->reset(raw_socks[0]);
   two->reset(raw_socks[1]);
   return true;

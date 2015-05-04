@@ -18,6 +18,7 @@
 
 #include "base/files/file_util.h"
 #include "base/logging.h"
+#include "base/posix/capsicum.h"
 #include "base/threading/thread_restrictions.h"
 
 namespace base {
@@ -88,6 +89,15 @@ bool SyncSocket::CreatePair(SyncSocket* socket_a, SyncSocket* socket_b) {
     CloseHandle(handles[1]);
     return false;
   }
+#endif
+
+#if defined(CAPSICUM_SUPPORT)
+  static Capsicum::Rights rights;
+  if (not rights.read)
+    rights.read = rights.write = rights.poll = true;
+
+  if (not Capsicum::RestrictPair(handles, rights))
+    return false;
 #endif
 
   // Copy the handles out for successful return.

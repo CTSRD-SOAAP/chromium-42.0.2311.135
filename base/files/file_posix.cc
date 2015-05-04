@@ -13,6 +13,7 @@
 #include "base/files/file_posix_hooks_internal.h"
 #include "base/logging.h"
 #include "base/metrics/sparse_histogram.h"
+#include "base/posix/capsicum.h"
 #include "base/posix/eintr_wrapper.h"
 #include "base/strings/utf_string_conversions.h"
 #include "base/threading/thread_restrictions.h"
@@ -257,6 +258,20 @@ void File::InitializeUnsafe(const FilePath& name, uint32 flags) {
 
   if (flags & FLAG_DELETE_ON_CLOSE)
     unlink(name.value().c_str());
+
+#if defined(CAPSICUM_SUPPORT)
+  Capsicum::Rights rights;
+  rights.stat = true;
+  rights.tell = true;
+  rights.read = (flags & FLAG_READ);
+  rights.write = (flags & FLAG_WRITE);
+  rights.lock = true;
+  rights.mmap = true;
+  rights.tty = (flags & FLAG_TERMINAL_DEVICE);
+
+  if (not Capsicum::RestrictFile(descriptor, rights))
+    DLOG(ERROR) << "error limiting descriptor " << descriptor;
+#endif
 
   async_ = ((flags & FLAG_ASYNC) == FLAG_ASYNC);
   error_details_ = FILE_OK;

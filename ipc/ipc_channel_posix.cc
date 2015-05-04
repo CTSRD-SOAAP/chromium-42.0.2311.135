@@ -30,6 +30,7 @@
 #include "base/logging.h"
 #include "base/memory/scoped_ptr.h"
 #include "base/memory/singleton.h"
+#include "base/posix/capsicum.h"
 #include "base/posix/eintr_wrapper.h"
 #include "base/posix/global_descriptors.h"
 #include "base/process/process_handle.h"
@@ -212,6 +213,15 @@ bool SocketPair(int* fd1, int* fd2) {
     PLOG(ERROR) << "socketpair()";
     return false;
   }
+
+#if defined(CAPSICUM_SUPPORT)
+  static Capsicum::Rights rights;
+  if (not rights.read)
+    rights.read = rights.write = rights.poll = true;
+
+  if (not Capsicum::RestrictPair(pipe_fds, rights))
+      return false;
+#endif
 
   // Set both ends to be non-blocking.
   if (fcntl(pipe_fds[0], F_SETFL, O_NONBLOCK) == -1 ||

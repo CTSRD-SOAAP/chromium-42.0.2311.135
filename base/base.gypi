@@ -1054,6 +1054,12 @@
           'i18n/utf8_validator_tables.cc',
           'i18n/utf8_validator_tables.h',
         ],
+      }],
+      ['base_target==1 and OS=="freebsd"', {
+        'sources': [
+          'posix/capsicum.h',
+          'posix/capsicum.cc',
+        ],
       }]
     ],
   },

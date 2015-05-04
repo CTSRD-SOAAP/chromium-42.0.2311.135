@@ -5,12 +5,17 @@
 #include "content/renderer/renderer_main_platform_delegate.h"
 
 #include <errno.h>
+#include <fcntl.h>
 #include <sys/stat.h>
 
 #include "base/command_line.h"
 #include "base/files/file_util.h"
 #include "base/logging.h"
+#if defined(CAPSICUM_SUPPORT)
+#include "content/common/sandbox_capsicum.h"
+#else
 #include "content/common/sandbox_linux/sandbox_linux.h"
+#endif
 #include "content/public/common/content_switches.h"
 #include "content/public/common/sandbox_init.h"
 
@@ -31,7 +36,14 @@ void RendererMainPlatformDelegate::PlatformUninitialize() {
 }
 
 bool RendererMainPlatformDelegate::EnableSandbox() {
-#if !defined(OS_BSD)
+#if defined(CAPSICUM_SUPPORT)
+  capsicum_sandbox_.reset(CapsicumSandbox::Create());
+  CHECK(capsicum_sandbox_);
+
+  if (not capsicum_sandbox_->InitializeSandbox())
+    return false;
+
+#elif !defined(OS_BSD)
   // The setuid sandbox is started in the zygote process: zygote_main_linux.cc
   // http://code.google.com/p/chromium/wiki/LinuxSUIDSandbox
   //
