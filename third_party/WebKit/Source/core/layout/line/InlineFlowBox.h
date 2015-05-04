@@ -27,6 +27,8 @@
 #include "core/layout/style/ShadowData.h"
 #include "core/rendering/RenderOverflow.h"
 
+#include <soaap.h>
+
 namespace blink {
 
 class HitTestRequest;
@@ -103,6 +105,7 @@ public:
             child->setConstructed();
     }
 
+    __soaap_vuln_fn("Cr issue #51602")
     void addToLine(InlineBox* child);
     virtual void deleteLine() override final;
     virtual void extractLine() override final;

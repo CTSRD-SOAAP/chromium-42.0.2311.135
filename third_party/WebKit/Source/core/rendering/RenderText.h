@@ -31,6 +31,8 @@
 #include "wtf/Forward.h"
 #include "wtf/PassRefPtr.h"
 
+#include <soaap.h>
+
 namespace blink {
 
 class AbstractInlineTextBox;
@@ -171,6 +173,7 @@ private:
     virtual void layout() override final { ASSERT_NOT_REACHED(); }
     virtual bool nodeAtPoint(const HitTestRequest&, HitTestResult&, const HitTestLocation&, const LayoutPoint&, HitTestAction) override final { ASSERT_NOT_REACHED(); return false; }
 
+    __soaap_vuln_fn("Cr issue #51602")
     void deleteTextBoxes();
     bool containsOnlyWhitespace(unsigned from, unsigned len) const;
     float widthFromCache(const Font&, int start, int len, float xPos, TextDirection, HashSet<const SimpleFontData*>* fallbackFonts, GlyphOverflow*) const;

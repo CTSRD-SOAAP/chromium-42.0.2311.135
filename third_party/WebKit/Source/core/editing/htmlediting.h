@@ -26,6 +26,7 @@
 #ifndef htmlediting_h
 #define htmlediting_h
 
+#include <soaap.h>
 #include "core/dom/Position.h"
 #include "core/editing/EditingBoundary.h"
 #include "platform/text/TextDirection.h"
@@ -100,6 +101,7 @@ inline bool editingIgnoresContent(const Node* node)
     return !node->canContainRangeEndPoint() || isEmptyNonEditableNodeInEditable(node);
 }
 
+__soaap_vuln_fn("Cr issue #51602")
 inline bool canHaveChildrenForEditing(const Node* node)
 {
     return !node->isTextNode() && node->canContainRangeEndPoint();
