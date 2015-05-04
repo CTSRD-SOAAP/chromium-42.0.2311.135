@@ -931,13 +931,11 @@
               ['include', 'files/file_path_watcher_mac.cc'],
             ]
           }],
-          # For now, just test the *BSD platforms enough to exclude them.
-          # Subsequent changes will include them further.
-          ['OS != "freebsd" or >(nacl_untrusted_build)==1', {
+          ['OS != "freebsd"', {
               'sources/': [ ['exclude', '_freebsd\\.cc$'] ],
             },
           ],
-          ['OS != "openbsd" or >(nacl_untrusted_build)==1', {
+          ['OS != "openbsd"', {
               'sources/': [ ['exclude', '_openbsd\\.cc$'] ],
             },
           ],
