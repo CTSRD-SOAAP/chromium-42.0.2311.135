@@ -53,6 +53,8 @@
 #include "third_party/libjingle/overrides/init_webrtc.h"
 #endif
 
+#include <soaap.h>
+
 namespace content {
 namespace {
 // This function provides some ways to test crash and assertion handling
@@ -195,6 +197,7 @@ int RendererMain(const MainFunctionParams& parameters) {
 #endif
     bool run_loop = true;
     if (!no_sandbox) {
+      __soaap_sandboxed_region_start("capsicum");
       run_loop = platform.EnableSandbox();
     } else {
       LOG(ERROR) << "Running without renderer sandbox";
