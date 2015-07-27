@@ -231,6 +231,7 @@ int RendererMain(const MainFunctionParams& parameters) {
   }
   platform.PlatformUninitialize();
   TRACE_EVENT_END_ETW("RendererMain", 0, "");
+  __soaap_sandboxed_region_end("renderer");
   return 0;
 }
 
