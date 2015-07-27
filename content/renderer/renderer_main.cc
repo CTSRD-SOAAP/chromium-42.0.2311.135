@@ -197,7 +197,7 @@ int RendererMain(const MainFunctionParams& parameters) {
 #endif
     bool run_loop = true;
     if (!no_sandbox) {
-      __soaap_sandboxed_region_start("capsicum");
+      __soaap_sandboxed_region_start("renderer");
       run_loop = platform.EnableSandbox();
     } else {
       LOG(ERROR) << "Running without renderer sandbox";
