@@ -15,6 +15,7 @@
 #include "webrtc/modules/audio_coding/neteq/packet_buffer.h"
 
 #include <algorithm>  // find_if()
+#include <soaap.h>
 
 #include "webrtc/modules/audio_coding/codecs/audio_decoder.h"
 #include "webrtc/modules/audio_coding/neteq/decoder_database.h"
@@ -49,6 +50,7 @@ void PacketBuffer::Flush() {
   DeleteAllPackets(&buffer_);
 }
 
+__soaap_vuln_fn("Cr issue #236846")
 int PacketBuffer::InsertPacket(Packet* packet) {
   if (!packet || !packet->payload) {
     if (packet) {

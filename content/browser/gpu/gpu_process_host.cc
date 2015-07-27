@@ -4,6 +4,8 @@
 
 #include "content/browser/gpu/gpu_process_host.h"
 
+#include <soaap.h>
+
 #include "base/base64.h"
 #include "base/base_switches.h"
 #include "base/basictypes.h"
@@ -698,6 +700,7 @@ void GpuProcessHost::OnInitialized(bool result, const gpu::GPUInfo& gpu_info) {
     GpuDataManagerImpl::GetInstance()->UpdateGpuInfo(gpu_info);
 }
 
+__soaap_vuln_fn("Cr issue #236631")
 void GpuProcessHost::OnChannelEstablished(
     const IPC::ChannelHandle& channel_handle) {
   TRACE_EVENT0("gpu", "GpuProcessHost::OnChannelEstablished");

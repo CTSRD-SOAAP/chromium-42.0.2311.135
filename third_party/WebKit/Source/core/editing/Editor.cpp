@@ -27,6 +27,8 @@
 #include "config.h"
 #include "core/editing/Editor.h"
 
+#include <soaap.h>
+
 #include "bindings/core/v8/ExceptionStatePlaceholder.h"
 #include "core/CSSPropertyNames.h"
 #include "core/EventNames.h"
@@ -643,6 +645,7 @@ String Editor::selectionStartCSSPropertyValue(CSSPropertyID propertyID)
     return selectionStyle->style()->getPropertyValue(propertyID);
 }
 
+__soaap_vuln_fn("Cr issue #237429")
 static void dispatchEditableContentChangedEvents(PassRefPtrWillBeRawPtr<Element> startRoot, PassRefPtrWillBeRawPtr<Element> endRoot)
 {
     if (startRoot)

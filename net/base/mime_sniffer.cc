@@ -93,6 +93,7 @@
 // definition and roughly the same as Firefox's definition.
 
 #include <string>
+#include <soaap.h>
 
 #include "net/base/mime_sniffer.h"
 
@@ -462,6 +463,7 @@ static bool SniffForOfficeDocs(const char* content,
 
   OfficeDocType type = DOC_TYPE_NONE;
   for (size_t i = 0; i < arraysize(kOfficeExtensionTypes); ++i) {
+    __soaap_vuln_pt("Cr issue #239580");
     std::string url_path = url.path();
 
     if (url_path.length() < kOfficeExtensionTypes[i].extension_len)

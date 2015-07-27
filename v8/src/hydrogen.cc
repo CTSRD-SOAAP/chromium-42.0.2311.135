@@ -5,6 +5,7 @@
 #include "src/hydrogen.h"
 
 #include <sstream>
+#include <soaap.h>
 
 #include "src/v8.h"
 
@@ -11270,6 +11271,7 @@ void HOptimizedGraphBuilder::BuildEmitInObjectProperties(
     }
   }
 
+  __soaap_vuln_pt("Cr issue #240056");
   int inobject_properties = boilerplate_object->map()->inobject_properties();
   HInstruction* value_instruction =
       Add<HConstant>(isolate()->factory()->one_pointer_filler_map());

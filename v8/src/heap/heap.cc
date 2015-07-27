@@ -4,6 +4,8 @@
 
 #include "src/v8.h"
 
+#include <soaap.h>
+
 #include "src/accessors.h"
 #include "src/api.h"
 #include "src/base/bits.h"
@@ -4578,6 +4580,7 @@ bool Heap::IdleNotification(int idle_time_in_ms) {
 
 
 bool Heap::IdleNotification(double deadline_in_seconds) {
+  __soaap_vuln_pt("Cr issue #425035");
   CHECK(HasBeenSetUp());  // http://crbug.com/425035
   double deadline_in_ms =
       deadline_in_seconds *
