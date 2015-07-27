@@ -263,7 +263,7 @@ void ResourceLoader::cancel(const ResourceError& error)
         m_host->didFailLoading(m_resource, nonNullError);
     }
 
-    __soaap_vuln_pt("Cr issue #244021")
+    __soaap_vuln_pt("Cr issue #244021");
     if (m_state == Finishing)
         m_resource->error(Resource::LoadError);
     if (m_state != Terminated)

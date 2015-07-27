@@ -222,7 +222,7 @@ void Resource::failBeforeStarting()
 
 void Resource::load(ResourceFetcher* fetcher, const ResourceLoaderOptions& options)
 {
-    __soaap_vuln_pt("Cr issue #244021")
+    __soaap_vuln_pt("Cr issue #244021");
     if (!fetcher->frame()) {
         failBeforeStarting();
         return;

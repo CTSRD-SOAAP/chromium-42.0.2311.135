@@ -889,7 +889,7 @@ void InputType::stepUpFromRenderer(int n)
             current = stepRange.minimum() - nextDiff;
         if (current > stepRange.maximum() - nextDiff)
             current = stepRange.maximum() - nextDiff;
-        __soaap_vuln_pt("Cr issue #243991")
+        __soaap_vuln_pt("Cr issue #243991");
         setValueAsDecimal(current, DispatchNoEvent, IGNORE_EXCEPTION);
     }
     if ((sign > 0 && current < stepRange.minimum()) || (sign < 0 && current > stepRange.maximum())) {

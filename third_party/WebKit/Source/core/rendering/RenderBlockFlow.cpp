@@ -1815,7 +1815,7 @@ void RenderBlockFlow::deleteLineBoxTree()
 
 void RenderBlockFlow::markAllDescendantsWithFloatsForLayout(RenderBox* floatToRemove, bool inLayout)
 {
-    __soaap_vuln_pt("Cr issue #244036")
+    __soaap_vuln_pt("Cr issue #244036");
     if (!everHadLayout() && !containsFloats())
         return;
 
