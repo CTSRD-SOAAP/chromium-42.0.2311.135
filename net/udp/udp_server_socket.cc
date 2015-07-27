@@ -48,9 +48,9 @@ int UDPServerSocket::Listen(const IPEndPoint& address) {
   return socket_.Bind(address);
 }
 
-int UDPServerSocket::RecvFrom(__soaap_private("network") IOBuffer* buf,
+int UDPServerSocket::RecvFrom(__soaap_private("renderer") IOBuffer* buf,
                               int buf_len,
-                              __soaap_private("network") IPEndPoint* address,
+                              __soaap_private("renderer") IPEndPoint* address,
                               const CompletionCallback& callback) {
   return socket_.RecvFrom(buf, buf_len, address, callback);
 }

@@ -239,7 +239,7 @@ class NET_EXPORT_PRIVATE HttpStreamParser {
   CompletionCallback io_callback_;
 
   // Buffer used to read the request body from UploadDataStream.
-  __soaap_private("network")
+  __soaap_private("renderer")
   scoped_refptr<SeekableIOBuffer> request_body_read_buf_;
   // Buffer used to send the request body. This points the same buffer as
   // |request_body_read_buf_| unless the data is chunked.
