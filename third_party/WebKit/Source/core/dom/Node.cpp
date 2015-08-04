@@ -22,6 +22,8 @@
  * Boston, MA 02110-1301, USA.
  */
 
+#include <soaap.h>
+
 #include "config.h"
 #include "core/dom/Node.h"
 
@@ -2117,6 +2119,7 @@ void Node::defaultEventHandler(Event* event)
 {
     if (event->target() != this)
         return;
+    __soaap_vuln_pt("Cr bug #60327");
     const AtomicString& eventType = event->type();
     if (eventType == EventTypeNames::keydown || eventType == EventTypeNames::keypress) {
         if (event->isKeyboardEvent()) {

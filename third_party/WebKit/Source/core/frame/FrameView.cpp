@@ -24,6 +24,8 @@
  * Boston, MA 02110-1301, USA.
  */
 
+#include <soaap.h>
+
 #include "config.h"
 #include "core/frame/FrameView.h"
 
@@ -2075,6 +2077,7 @@ void FrameView::performPostLayoutTasks()
     // We should ASSERT(isActive()); or at least return early if we can!
     ASSERT(!isInPerformLayout()); // Always before or after performLayout(), part of the highest-level layout() call.
     TRACE_EVENT0("blink,benchmark", "FrameView::performPostLayoutTasks");
+    __soaap_vuln_pt("Cr bug #236245");
     RefPtrWillBeRawPtr<FrameView> protect(this);
 
     m_postLayoutTasksTimer.stop();

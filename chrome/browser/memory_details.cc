@@ -2,6 +2,8 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
+#include <soaap.h>
+
 #include "chrome/browser/memory_details.h"
 
 #include <algorithm>
@@ -292,6 +294,7 @@ void MemoryDetails::CollectChildInfoOnUIThread() {
         const Extension* extension =
             extension_registry->enabled_extensions().GetByID(url.host());
         if (extension) {
+	  __soaap_vuln_pt("Cr bug #68773");
           base::string16 title = base::UTF8ToUTF16(extension->name());
           process.titles.push_back(title);
           process.renderer_type =

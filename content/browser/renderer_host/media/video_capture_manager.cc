@@ -7,6 +7,8 @@
 #include <algorithm>
 #include <set>
 
+#include <soaap.h>
+
 #include "base/bind.h"
 #include "base/bind_helpers.h"
 #include "base/logging.h"
@@ -403,6 +405,7 @@ VideoCaptureManager::DoStartDeviceOnDeviceThread(
       break;
     }
     case MEDIA_TAB_VIDEO_CAPTURE: {
+      __soaap_vuln_pt("Cr bug #233261");
       video_capture_device.reset(
           WebContentsVideoCaptureDevice::Create(id));
       break;

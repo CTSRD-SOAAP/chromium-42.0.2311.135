@@ -2199,6 +2199,7 @@ void RenderBlockFlow::removeFloatingObjects()
     if (!m_floatingObjects)
         return;
 
+    __soaap_vuln_pt("Cr bug #245727");
     markSiblingsWithFloatsForLayout();
 
     m_floatingObjects->clear();

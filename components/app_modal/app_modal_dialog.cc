@@ -2,6 +2,8 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
+#include <soaap.h>
+
 #include "components/app_modal/app_modal_dialog.h"
 
 #include "base/logging.h"
@@ -71,6 +73,7 @@ void AppModalDialog::CloseModalDialog() {
 }
 
 void AppModalDialog::CompleteDialog() {
+  __soaap_vuln_pt("Cr bug #137707");
   if (!completed_) {
     completed_ = true;
     AppModalDialogQueue::GetInstance()->ShowNextDialog();
