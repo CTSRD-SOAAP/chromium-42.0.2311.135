@@ -40,7 +40,7 @@ scoped_refptr<Extension> ConvertUserScriptToExtension(
     return NULL;
   }
 
-  __soaap_vuln_pt("Cr bug #64456");
+  __soaap_vuln_pt("Cr issue #64456");
   if (!base::IsStringUTF8(content)) {
     *error = base::ASCIIToUTF16("User script must be UTF8 encoded.");
     return NULL;

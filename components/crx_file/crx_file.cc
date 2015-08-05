@@ -43,7 +43,7 @@ scoped_ptr<CrxFile> CrxFile::Create(const uint32 key_size,
   header.version = kCurrentVersion;
   header.key_size = key_size;
   header.signature_size = signature_size;
-  __soaap_vuln_pt("Cr bug #62791");
+  __soaap_vuln_pt("Cr issue #62791");
   if (HeaderIsValid(header, error))
     return scoped_ptr<CrxFile>(new CrxFile(header));
   return scoped_ptr<CrxFile>();

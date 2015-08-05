@@ -73,7 +73,7 @@ void AppModalDialog::CloseModalDialog() {
 }
 
 void AppModalDialog::CompleteDialog() {
-  __soaap_vuln_pt("Cr bug #137707");
+  __soaap_vuln_pt("Cr issue #137707");
   if (!completed_) {
     completed_ = true;
     AppModalDialogQueue::GetInstance()->ShowNextDialog();

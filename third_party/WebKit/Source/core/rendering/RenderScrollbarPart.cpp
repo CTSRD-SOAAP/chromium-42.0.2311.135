@@ -126,7 +126,7 @@ static int calcScrollbarThicknessUsing(SizeType sizeType, const Length& length, 
 
 void RenderScrollbarPart::computeScrollbarWidth()
 {
-    __soaap_vuln_pt("Cr bug #49729");
+    __soaap_vuln_pt("Cr issue #49729");
     if (!m_scrollbar->owningRenderer())
         return;
     // FIXME: We are querying layout information but nothing guarantees that it's up-to-date, especially since we are called at style change.
@@ -144,7 +144,7 @@ void RenderScrollbarPart::computeScrollbarWidth()
 
 void RenderScrollbarPart::computeScrollbarHeight()
 {
-    __soaap_vuln_pt("Cr bug #49729");
+    __soaap_vuln_pt("Cr issue #49729");
     if (!m_scrollbar->owningRenderer())
         return;
     // FIXME: We are querying layout information but nothing guarantees that it's up-to-date, especially since we are called at style change.

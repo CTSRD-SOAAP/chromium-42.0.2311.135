@@ -405,7 +405,7 @@ VideoCaptureManager::DoStartDeviceOnDeviceThread(
       break;
     }
     case MEDIA_TAB_VIDEO_CAPTURE: {
-      __soaap_vuln_pt("Cr bug #233261");
+      __soaap_vuln_pt("Cr issue #233261");
       video_capture_device.reset(
           WebContentsVideoCaptureDevice::Create(id));
       break;
