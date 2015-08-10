@@ -5,6 +5,7 @@
 #ifndef NET_HTTP_HTTP_NETWORK_TRANSACTION_H_
 #define NET_HTTP_HTTP_NETWORK_TRANSACTION_H_
 
+#include <soaap.h>
 #include <string>
 
 #include "base/basictypes.h"
@@ -55,7 +56,7 @@ class NET_EXPORT_PRIVATE HttpNetworkTransaction
                       const CompletionCallback& callback) override;
   bool IsReadyToRestartForAuth() override;
 
-  int Read(IOBuffer* buf,
+  int Read(__soaap_private("renderer") IOBuffer* buf,
            int buf_len,
            const CompletionCallback& callback) override;
   void StopCaching() override;

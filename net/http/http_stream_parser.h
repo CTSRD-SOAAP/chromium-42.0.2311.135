@@ -6,7 +6,6 @@
 #define NET_HTTP_HTTP_STREAM_PARSER_H_
 
 #include <string>
-#include <soaap.h>
 
 #include "base/basictypes.h"
 #include "base/memory/ref_counted.h"
@@ -239,7 +238,6 @@ class NET_EXPORT_PRIVATE HttpStreamParser {
   CompletionCallback io_callback_;
 
   // Buffer used to read the request body from UploadDataStream.
-  __soaap_private("renderer")
   scoped_refptr<SeekableIOBuffer> request_body_read_buf_;
   // Buffer used to send the request body. This points the same buffer as
   // |request_body_read_buf_| unless the data is chunked.

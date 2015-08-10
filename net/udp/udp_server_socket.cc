@@ -4,8 +4,6 @@
 
 #include "net/udp/udp_server_socket.h"
 
-#include <soaap.h>
-
 #include "net/base/net_errors.h"
 #include "net/base/rand_callback.h"
 
@@ -48,9 +46,9 @@ int UDPServerSocket::Listen(const IPEndPoint& address) {
   return socket_.Bind(address);
 }
 
-int UDPServerSocket::RecvFrom(__soaap_private("renderer") IOBuffer* buf,
+int UDPServerSocket::RecvFrom(IOBuffer* buf,
                               int buf_len,
-                              __soaap_private("renderer") IPEndPoint* address,
+                              IPEndPoint* address,
                               const CompletionCallback& callback) {
   return socket_.RecvFrom(buf, buf_len, address, callback);
 }
